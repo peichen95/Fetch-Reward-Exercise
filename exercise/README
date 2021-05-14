@@ -1,0 +1,45 @@
+The application uses Java8, Spring5, Spring Boot2 and H2 in memory DB to build the server.
+User is hard coded to "user" for the purpose of exercise.
+
+APIs:
+/points/{user}: get payer balances for a user
+	Response:
+	{
+	    "UNILEVER": 200,
+	    "MILLER COORS": 10000,
+	    "DANNON": 1100
+	}
+
+/transaction: add new transactions
+	Request:
+	{ 
+		"payer": "DANNON", 
+		"points": 1000, 
+		"timestamp": "2020-11-02T14:00:00Z" 
+	} 
+	Response:
+	"Transaction has been successfully processed"
+
+/spend_points: spend points
+	Request:
+	{
+		"points": 5000
+	}
+	Reponse:
+	{
+	    "message": "Transaction has been successfully processed",
+	    "pointSpentList": [
+	        {
+	            "payer": "UNILEVER",
+	            "points": -200
+	        },
+	        {
+	            "payer": "MILLER COORS",
+	            "points": -4700
+	        },
+	        {
+	            "payer": "DANNON",
+	            "points": -100
+	        }
+	    ]
+	}
